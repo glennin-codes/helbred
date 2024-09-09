@@ -9,8 +9,17 @@
     "prebuild": "npm run prebuild --workspaces --if-present",
     "pretest": "npm run prebuild --workspaces --if-present",
     "start": "npm start --workspaces --if-present",
-    "test": "npm test --workspaces --if-present"
-  },
+    "test": "npm test --workspaces --if-present",
+    "deploy": "./did.sh &&  dfx generate Quillo_frontend && dfx generate Quillo_backend && dfx deploy -y",
+    "publish": " ./did.sh && dfx deploy Quillo_backend --network ic ",
+    "new": " dfx build  && dfx deploy --network ic --verbose",
+    "build-backend": "cd src/helbred_backend   && cargo build",
+    "clean-backend": "cd src/helbred_backend   && cargo clean",
+    "acp": "git add . && git commit -m \"$MESSAGE\" && git push origin \"$BRANCH\"",
+    "frontend": "cd src/starter-canister-frontend && npm run start",
+    "prepare": "cd src/helbred_backend  /src/assets && curl -o download_latest_icrc1_ledger.sh 'https://raw.githubusercontent.com/dfinity/ic/326df23607fc8280a047daba2d8462f1dfc57466/rs/rosetta-api/scripts/download_latest_icrc1_ledger.sh' && chmod +x download_latest_icrc1_ledger.sh && ./download_latest_icrc1_ledger.sh",
+  "type": "module"
+},
   "type": "module",
   "workspaces": [
     "src/helbred_frontend"
