@@ -85,26 +85,6 @@ pub struct EmergencyContact {
 
 
 
-/// States whether the type's size is bounded or unbounded.
-pub enum Bound {
-    /// The type has no size bounds.
-    Unbounded,
-
-    /// The type has size bounds.
-    Bounded {
-        /// The maximum size, in bytes, of the type when serialized.
-        max_size: u32,
-
-        /// True if all the values of this type have fixed-width encoding.
-        /// Some data structures, such as stable vector, can take
-        /// advantage of fixed size to avoid storing an explicit entry
-        /// size.
-        ///
-        /// Examples: little-/big-endian encoding of u16/u32/u64, tuples
-        /// and arrays of fixed-size types.
-        is_fixed_size: bool,
-    },
-}
 pub trait BoundedStorable {
     const MAX_SIZE: u32;
     const IS_FIXED_SIZE: bool;
@@ -118,7 +98,7 @@ impl Storable for HealthRecord{
     fn from_bytes(bytes: std::borrow::Cow<[u8]>) -> Self {
         Decode!(bytes.as_ref(), Self).unwrap()
     }
-    
+   
 
 
 }
