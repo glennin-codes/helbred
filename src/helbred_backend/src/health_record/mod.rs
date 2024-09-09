@@ -99,17 +99,17 @@ pub struct EmergencyContact {
 
 
 impl HealthRecord   {}
-impl Storable for HealthRecord   {
-    fn to_bytes(&self) -> std::borrow::Cow<[u8]> {
-        Cow::Owned(Encode!(self).unwrap())
-    }
+// impl Storable for HealthRecord   {
+//     fn to_bytes(&self) -> std::borrow::Cow<[u8]> {
+//         Cow::Owned(Encode!(self).unwrap())
+//     }
 
-    fn from_bytes(bytes: std::borrow::Cow<[u8]>) -> Self {
-        Decode!(bytes.as_ref(), Self).unwrap()
-    }
-}
+//     fn from_bytes(bytes: std::borrow::Cow<[u8]>) -> Self {
+//         Decode!(bytes.as_ref(), Self).unwrap()
+//     }
+// }
 
-impl BoundedStorable for HealthRecord   {
-    const MAX_SIZE: u32 = 102400;
-    const IS_FIXED_SIZE: bool = false;
-}
+// impl BoundedStorable for HealthRecord   {
+//     const MAX_SIZE: u32 = 102400;
+//     const IS_FIXED_SIZE: bool = false;
+// }
