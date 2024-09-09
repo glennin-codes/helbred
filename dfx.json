@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "helbred_backend": {
+      "candid": "src/helbred_backend/helbred_backend.did",
+      "package": "helbred_backend",
+      "type": "rust"
+    },
+    "helbred_frontend": {
+      "dependencies": [
+        "helbred_backend"
+      ],
+      "source": [
+        "src/helbred_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "helbred_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
