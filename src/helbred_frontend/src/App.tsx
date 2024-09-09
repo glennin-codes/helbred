@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DoctorDashboard from './Pages/DoctorSection';
 import Oby from './Pages/DoctorSection/Oby';
 import Dashboard from './Pages/mvp';
+import UserProfile from './Pages/Patient';
+import { patientData } from './Pages/Patient/types';
 function App() {
   const [greeting, setGreeting] = useState('');
 
@@ -25,6 +27,7 @@ function App() {
         <Route path="/doc" element={<DoctorDashboard />} />
         <Route path="/land" element={<Oby/>} />
         <Route path="/dash" element={<Dashboard/>} />
+        <Route path="/user" element={<UserProfile records={patientData} />} />
         {/* Add other routes as needed */}
       </Routes>
     </div>

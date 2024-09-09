@@ -8,7 +8,7 @@ const Dashboard = () => {
 
   const patients = [
     { id: 1, name: 'John Doe', email: 'johndoe@gmail.com', image: 'https://via.placeholder.com/150' },
-    { id: 2, name: 'Jane Smith', email: 'janesmith@gmail.com', image: 'https://via.placeholder.com/150' },
+     { id: 2, name: 'Jane Smith', email: 'janesmith@gmail.com', image: 'https://via.placeholder.com/150' },
     // Add more patients as needed
   ];
 
