@@ -25,7 +25,12 @@
     "src/helbred_frontend"
   ],
   "dependencies": {
+<<<<<<< HEAD
     "react-router-dom": "^6.26.1",
     "react-toastify": "^10.0.5"
+=======
+    "react-icons": "^5.3.0",
+    "react-router-dom": "^6.26.1"
+>>>>>>> 30aafc60f4494470504b87d159e548b2d8a9e291
   }
 }
