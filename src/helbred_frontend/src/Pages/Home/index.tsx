@@ -132,7 +132,7 @@ function HomePage() {
     </section>
 
     {/* Footer */}
-    <footer className="flex flex bg-teal-500 text-white py-8">
+    <footer className="flex  bg-teal-500 text-white py-8">
   <div className="container mx-auto px-4">
     <div className="flex flex-col md:flex-row justify-between items-center">
       {/* <!-- Logo and Site Information --> */}
