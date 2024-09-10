@@ -126,25 +126,17 @@ fn update_medical_data(
 
 #[query]
 fn query_health_record(email: String) -> Result<HealthRecord, CustomError> {
-    EMAIL_TO_PUBLIC_KEY.with(|email_map| {
-        if let Some(public_key) = email_map.borrow().get(&email) {
-            USER_IDS.with(|user_ids| {
-                if let Some(&id) = user_ids.borrow().get(public_key) {
-                    STORAGE.with(|storage| {
-                        storage.borrow().get(&id)
-                            .ok_or(CustomError::RecordNotFound)
-                    })
-                } else {
-                    Err(CustomError::UserNotFound)
-                }
+    USER_IDS.with(|user_ids| {
+        if let Some(&id) = user_ids.borrow().get(&email) {
+            STORAGE.with(|storage| {
+                storage.borrow().get(&id)
+                    .ok_or(CustomError::RecordNotFound)
             })
         } else {
             Err(CustomError::UserNotFound)
         }
     })
 }
-
-
 
 
 ic_cdk::export_candid!();

@@ -11,6 +11,7 @@ function HomePage() {
       <nav className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold">helbred</div>
         <div>
+          
           <button className="bg-white text-teal-500 py-2 px-4 rounded hover:bg-gray-100">
             ConnectWallet
           </button>

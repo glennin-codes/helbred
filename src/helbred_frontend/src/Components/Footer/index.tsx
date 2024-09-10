@@ -13,7 +13,7 @@ console.log({year})
   return (
     <>
        {/* Footer */}
-    <footer className="bg-teal-500 text-white py-8">
+    <footer className="bg-teal-500 text-white py-8 bottom-0">
   <div className="container mx-auto px-4">
     <div className="flex flex-col md:flex-row justify-between items-center">
       {/* <!-- Logo and Site Information --> */}

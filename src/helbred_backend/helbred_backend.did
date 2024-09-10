@@ -10,11 +10,11 @@ type HealthRecord = record {
   medicational_changing_data : vec Treatment;
 };
 type PersonalInfo = record {
-  dob : opt text;
+  dob : text;
   public_key : text;
-  name : opt text;
+  name : text;
   email : text;
-  location : opt text;
+  location : text;
 };
 type Result = variant { Ok : bool; Err : CustomError };
 type Result_1 = variant { Ok : nat64; Err : CustomError };

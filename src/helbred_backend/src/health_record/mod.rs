@@ -11,9 +11,9 @@ use std::borrow::Cow;
 #[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 // Define a basic struct for personal information (encrypted for privacy)
 pub struct PersonalInfo {
-    pub name: Option<String>,      
-    pub dob: Option<String>,      
-    pub location: Option<String>,  
+    pub name: String,      
+    pub dob: String,      
+    pub location: String,  
     pub public_key: String,        
     pub email: String,        
 }

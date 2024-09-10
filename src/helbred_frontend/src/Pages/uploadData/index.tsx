@@ -1,4 +1,8 @@
 import { ChangeEvent, useState } from "react";
+import { createActor , helbred_backend} from '../../../../declarations/helbred_backend';
+
+
+
 
 export default function UploadData() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -21,6 +25,13 @@ export default function UploadData() {
         email: "",
       },
     ],
+    
+  });
+  let actor = helbred_backend;
+  // const agent: any = new HttpAgent();
+  //backend canister name
+  actor = createActor("bkyz2-fmaaa-aaaaa-qaaaq-cai", {
+   
   });
 
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
@@ -48,7 +59,7 @@ export default function UploadData() {
   };
 
   return (
-    <div className="text-white">
+    <div className="text-white mx-12 h-screen w-full mt-20">
       <h2 className="text-xl font-semibold mb-6">Project details</h2>
 
       <form>

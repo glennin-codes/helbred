@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jockey+One&family=League+Spartan:wght@100..900&display=swap");
+
+/*fonts*/
+@mixin usefontJost() {
+  // jost
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin usefontLS() {
+  // league spartan
+  font-family: "League Spartan", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin usefontJO() {
+  // jockey one
+  font-family: "Jockey One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*viewports*/
+@mixin phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin tablet-upwards {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin big-desktop {
+  @media only screen and (min-width: 1300px) {
+    @content;
+  }
+}
+
+/*misc*/
+@mixin page() {
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin flexmixin($direction, $wrap, $align, $justify, $gap) {
+  display: flex !important;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+/*animation*/
+@mixin usesimpleanimation($duration, $delay) {
+  animation: simpleanimation;
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-direction: alternate;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+
+  @keyframes simpleanimation {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    from {
+      transform: translateY(0.5rem);
+      opacity: 0;
+    }
+  }
+}

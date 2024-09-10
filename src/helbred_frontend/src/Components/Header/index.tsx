@@ -38,11 +38,9 @@ const Header = () => {
         </div>
         <div>
           <button className="bg-white text-teal-500 py-2 px-4 rounded hover:bg-gray-100">
-            Login
+           Connect Wallet
           </button>
-          <button className="ml-4 bg-teal-600 text-white py-2 px-4 rounded hover:bg-teal-700">
-            Sign Up
-          </button>
+         
         </div>
       </nav>
     </header>
