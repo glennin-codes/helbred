@@ -1,9 +1,13 @@
 // Import necessary cryptographic libraries for encryption and zero-knowledge proofs
 use candid::{Decode, Encode};
-use ic_stable_structures::{self, Storable};
+use ic_stable_structures::{  
+     BoundedStorable,
+Storable
+};
 use std::borrow::Cow;
 
-#[derive(candid::CandidType, Clone, Serialize, Deserialize)]
+
+#[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 // Define a basic struct for personal information (encrypted for privacy)
 pub struct PersonalInfo {
     pub name: Option<String>,      // Optionally encrypted, only accessible with permission
@@ -15,7 +19,7 @@ pub struct PersonalInfo {
 }
 
 // Struct for treatments the patient has received
-#[derive(candid::CandidType, Clone, Serialize, Deserialize)]
+#[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 pub struct Treatment {
     pub date: String,                // Date of treatment (DD/MM/YYYY)
     pub doctor_name: Option<String>, // Doctor's name (can be private)
@@ -25,7 +29,7 @@ pub struct Treatment {
 }
 
 // Struct for medications (part of Treatment)
-#[derive(candid::CandidType, Clone, Serialize, Deserialize)]
+#[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 pub struct Medication {
     pub name: String,      // Medication name
     pub dosage: String,    // Dosage information
@@ -34,7 +38,7 @@ pub struct Medication {
 }
 
 // Struct for lab results (imaging, blood tests, etc.)
-#[derive(candid::CandidType, Clone, Serialize, Deserialize)]
+#[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 pub struct LabResult {
     pub test_name: String,   // Name of the test (e.g., "Complete Blood Count", "X-ay")
     pub date: String,        // Date of the test (DD/MM/YYYY)
@@ -43,14 +47,8 @@ pub struct LabResult {
     pub verified: bool,      // Whether the result has been verified by a doctor or lab
 }
 
-// Struct for the complete Health Record (combining all patient data)
-#[derive(candid::CandidType, Clone, Serialize, Deserialize)]
-pub struct HealthRecord {
-    pub personal_info: PersonalInfo,           // Personal details (can be optional or encrypted)
-    pub emergency_data: EmergencyData,
-    pub medicational_changing_data:Vec<DoctorsPart>
-}
-#[derive(candid::CandidType, Clone, Serialize, Deserialize)]
+
+#[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 pub struct  DoctorsPart{
     pub treatments: Vec<Treatment>,            // List of treatments the patient has received
     pub lab_results: Vec<LabResult>,           // List of lab results and diagnostic tests
@@ -62,7 +60,7 @@ pub struct  DoctorsPart{
 
 
 // Struct for critical emergency data (pre-authorized for emergency access)
-#[derive(candid::CandidType, Clone, Serialize, Deserialize)]
+#[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 pub struct EmergencyData {
     pub blood_type: String,          // Blood type of the patient (critical for emergencies)
     pub allergies: Vec<String>,      // List of allergies (e.g., penicillin, peanuts)
@@ -72,7 +70,7 @@ pub struct EmergencyData {
 }
 
 // Struct for emergency contacts
-#[derive(candid::CandidType, Clone, Serialize, Deserialize)]
+#[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 pub struct EmergencyContact {
     pub name: String,
     pub relationship: String,       // Relationship to the patient (e.g., spouse, parent)
@@ -82,33 +80,16 @@ pub struct EmergencyContact {
 
 
 
-
-
-
-/// States whether the type's size is bounded or unbounded.
-pub enum Bound {
-    /// The type has no size bounds.
-    Unbounded,
-
-    /// The type has size bounds.
-    Bounded {
-        /// The maximum size, in bytes, of the type when serialized.
-        max_size: u32,
-
-        /// True if all the values of this type have fixed-width encoding.
-        /// Some data structures, such as stable vector, can take
-        /// advantage of fixed size to avoid storing an explicit entry
-        /// size.
-        ///
-        /// Examples: little-/big-endian encoding of u16/u32/u64, tuples
-        /// and arrays of fixed-size types.
-        is_fixed_size: bool,
-    },
+// Struct for the complete Health Record (combining all patient data)
+#[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
+pub struct HealthRecord {
+    pub personal_info: PersonalInfo,           // Personal details (can be optional or encrypted)
+    pub emergency_data: EmergencyData,
+    pub medicational_changing_data:Vec<DoctorsPart>
 }
-pub trait BoundedStorable {
-    const MAX_SIZE: u32;
-    const IS_FIXED_SIZE: bool;
-}
+
+
+
 
 impl Storable for HealthRecord{
     fn to_bytes(&self) -> std::borrow::Cow<[u8]> {
@@ -118,7 +99,12 @@ impl Storable for HealthRecord{
     fn from_bytes(bytes: std::borrow::Cow<[u8]>) -> Self {
         Decode!(bytes.as_ref(), Self).unwrap()
     }
-    
+   
 
 
 }
+impl BoundedStorable for HealthRecord {
+    const MAX_SIZE: u32 = 1024;
+    const IS_FIXED_SIZE: bool = false;
+}
+
