@@ -25,6 +25,7 @@
     "src/helbred_frontend"
   ],
   "dependencies": {
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "react-toastify": "^10.0.5"
   }
 }

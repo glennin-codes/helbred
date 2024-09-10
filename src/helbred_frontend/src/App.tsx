@@ -6,6 +6,8 @@ import Oby from './Pages/DoctorSection/Oby';
 import Dashboard from './Pages/mvp';
 import UserProfile from './Pages/Patient';
 import { patientData } from './Pages/Patient/types';
+import { Footer } from './Components/Footer';
+import UploadData from './Pages/uploadData';
 function App() {
   const [greeting, setGreeting] = useState('');
 
@@ -28,8 +30,11 @@ function App() {
         <Route path="/land" element={<Oby/>} />
         <Route path="/dash" element={<Dashboard/>} />
         <Route path="/user" element={<UserProfile records={patientData} />} />
+        <Route path="/upload" element={<UploadData/>}/>
+   
         {/* Add other routes as needed */}
       </Routes>
+    
     </div>
   </Router>
 

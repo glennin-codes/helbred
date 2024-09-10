@@ -4,7 +4,7 @@ import History from './history';
 
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedPatient, setSelectedPatient] = useState(null);
+  const [selectedPatient, setSelectedPatient] = useState({});
 
   const patients = [
     { id: 1, name: 'John Doe', email: 'johndoe@gmail.com', image: 'https://via.placeholder.com/150' },

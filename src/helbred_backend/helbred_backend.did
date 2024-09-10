@@ -1,1 +1,37 @@
-service : {}
+type AuthPayload = record { signature : blob; public_key : text };
+type CustomError = variant {
+  UserAlreadyExists;
+  Custom : text;
+  RecordNotFound;
+  UserNotFound;
+};
+type HealthRecord = record {
+  personal_info : PersonalInfo;
+  medicational_changing_data : vec Treatment;
+};
+type PersonalInfo = record {
+  dob : opt text;
+  public_key : text;
+  name : opt text;
+  email : text;
+  location : opt text;
+};
+type Result = variant { Ok : bool; Err : CustomError };
+type Result_1 = variant { Ok : nat64; Err : CustomError };
+type Result_2 = variant { Ok : HealthRecord; Err : CustomError };
+type Result_3 = variant { Ok; Err : CustomError };
+type Treatment = record {
+  hospital : opt text;
+  prescription : text;
+  date : text;
+  diagnosis : text;
+  email : text;
+  lab_results : opt text;
+  doctor_name : opt text;
+};
+service : {
+  authenticate : (AuthPayload) -> (Result);
+  insert_initial_health_record : (PersonalInfo) -> (Result_1);
+  query_health_record : (text) -> (Result_2) query;
+  update_medical_data : (text, Treatment) -> (Result_3);
+}
