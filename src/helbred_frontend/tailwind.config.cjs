@@ -17,7 +17,7 @@ module.exports = {
           600: '#319795',
         },
         beige: {
-          DEFAULT: '#f5f5dc',
+          DEFAULT: '#e8d9c7',
         },
       },
       fontFamily: {
