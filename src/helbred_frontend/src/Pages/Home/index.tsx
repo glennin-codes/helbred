@@ -6,22 +6,9 @@ let currentYear: number = new Date().getFullYear();
 function HomePage() {
   return (
     <div className="bg-[#f5f5dc] min-h-screen flex flex-col">
-    {/* Header */}
-    <header className="bg-teal-500 text-white p-6 shadow-lg">
-      <nav className="container mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold">helbred</div>
-        <div>
-          
-          <button className="bg-white text-teal-500 py-2 px-4 rounded hover:bg-gray-100">
-            ConnectWallet
-          </button>
-        
-        </div>
-      </nav>
-    </header>
 
     {/* Hero Section */}
-    <section className="container mx-auto flex-1 flex flex-col lg:flex-row items-center justify-center py-16">
+    <section className="mt-24 container mx-auto flex-1 flex flex-col lg:flex-row items-center justify-center py-16">
       <div className="text-center lg:text-left lg:w-1/2">
         <h1 className="text-5xl font-bold text-teal-500 mb-6">
           Manage Your Health, Securt-kely & Privately

@@ -23,11 +23,11 @@ pub struct PersonalInfo {
 #[derive(candid::CandidType, Clone, Serialize, Deserialize,Default)]
 pub struct Treatment {
     pub date: String,               
-    pub doctor_name: Option<String>,
-    pub hospital: Option<String>,   
+    pub doctor_name: String,
+    pub hospital: String,   
     pub diagnosis: String,         
     pub prescription: String,
-    pub lab_results:Option<String>,
+    pub lab_results:String,
     pub email:String,
 
 }

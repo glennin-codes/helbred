@@ -2,8 +2,7 @@ import { useState } from 'react';
 import HomePage from './Pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DoctorDashboard from './Pages/DoctorSection';
-import Oby from './Pages/DoctorSection/Oby';
-import Dashboard from './Pages/mvp';
+import Dashboard from './Pages/SearchLoby';
 import UserProfile from './Pages/Patient';
 import { patientData } from './Pages/Patient/types';
 import { Footer } from './Components/Footer';
@@ -30,11 +29,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/doc" element={<DoctorDashboard />} />
-        <Route path="/land" element={<Oby/>} />
         <Route path="/dash" element={<Dashboard/>} />
-        <Route path="/user" element={<UserProfile records={patientData} />} />
-        <Route path="/upload" element={<UploadData/>}/>
-   
+        <Route path="/user" element={<UserProfile  />} />
+       
         {/* Add other routes as needed */}
       </Routes>
     {/* <Footer/> */}

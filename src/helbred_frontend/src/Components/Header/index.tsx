@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { createThirdwebClient } from "thirdweb";
+import { ConnectButton } from "thirdweb/react";
+import { createWallet } from "thirdweb/wallets";
+import { base, sepolia } from "thirdweb/chains";
 
 const Header = () => {
   const [shadow, setShadow] = useState(false);
+  const [connected, setConnected] = useState(false);
+  const [payeeAddress, setPayeeAddress] = useState("");
 
-  // Add shadow when scrolling
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      setShadow(true);
-    } else {
-      setShadow(false);
-    }
+
+
+  const handleConnect = () => {
+    setConnected(true);
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+
+
 
   return (
     <header
@@ -27,7 +26,7 @@ const Header = () => {
     >
       <nav className="container flex items-center justify-between mx-auto w-full md:w-auto ">
         <div className="flex items-center space-x-4">
-          <a href="/" className="flex items-center space-x-2">
+          <a href="/" className="flex items-center space-x-8">
             <img
               src="images/icon.png"
               alt="Icon"
@@ -35,11 +34,35 @@ const Header = () => {
             />
             <span className="text-2xl font-bold">HelBred</span>
           </a>
+          <a href="/dash" className="flex items-center space-x-2 border border border-teal-100 p-2 hover:border-teal-900 ">
+            <span className="text-xl font-bold">Doctor Panel</span>
+          </a>
+          <a href="/user" className="flex items-center space-x-2 border border border-teal-100 p-2 hover:border-teal-900 ">
+            <span className="text-xl font-bold">Patient Panel</span>
+          </a>
         </div>
         <div>
-          <button className="bg-white text-teal-500 py-2 px-4 rounded hover:bg-gray-100">
-           Connect Wallet
-          </button>
+   <div >
+          {!connected ? (
+            <ConnectButton
+              client={createThirdwebClient({
+                clientId: "b9fadb0987db2e9cda89444d5f5315ac",
+              })}
+              wallets={[
+                createWallet("com.coinbase.wallet", {
+                  walletConfig: {
+                    options: "smartWalletOnly",
+                  },
+                  chains: [base, sepolia],
+                }),
+              ]}
+              onConnect={handleConnect}
+             
+            />
+          ) : (
+            <p>Wallet Connected!</p>
+          )}
+        </div>
          
         </div>
       </nav>
